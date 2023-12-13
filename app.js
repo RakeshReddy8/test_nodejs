@@ -19,7 +19,7 @@ const pool = mysql.createPool(dbConfig);
 // API endpoint to fetch data from RDS
 app.get('/', (req, res) => {
   // Display the Hello message
-  let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 50 and 100<br><br>';
+  let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 50<br><br>';
 
   // Fetch data from RDS
   pool.query('SELECT * FROM users', (error, results, fields) => {
