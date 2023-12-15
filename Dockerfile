@@ -1,5 +1,5 @@
-# Use an official Node.js runtime as a base image
-FROM node:19-bullseye
+# Use a specific Node.js version as a base image
+FROM node:20.10.0-bullseye
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -8,9 +8,9 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install
+RUN npm install --production
 
-# Copy the application code to the container
+# Copy only necessary files for the application
 COPY . .
 
 # Expose the port on which the app will run
