@@ -7,7 +7,7 @@ const port = 3000;
 
 // RDS connection details
 const dbConfig = {
-  host: 'database-1.chiqz525uwfm.ap-south-1.rds.amazonaws.com',
+  host: 'database-1.cv9kz3hi8ocz.us-west-2.rds.amazonaws.com',
   user: 'admin',
   password: 'Reddyrakesh11',
   database: 'esne_database',
@@ -32,7 +32,7 @@ const getPackageInfo = (callback) => {
 // API endpoint to fetch data from RDS
 app.get('/', (req, res) => {
   // Display the Hello message
-  let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 18th<br><br>';
+  let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 18th and RDS on<br><br>';
 
   // Display Node.js version
   responseMessage += `<strong>Node.js Version:</strong> ${process.version}<br><br>`;
