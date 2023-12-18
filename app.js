@@ -7,7 +7,7 @@ const port = 3000;
 
 // RDS connection details
 const dbConfig = {
-  host: 'database-1.cv9kz3hi8ocz.us-west-2.rds.amazonaws.com',
+  host: 'database-1.chiqz525uwfm.ap-south-1.rds.amazonaws.com',
   user: 'admin',
   password: 'Reddyrakesh11',
   database: 'esne_database',
