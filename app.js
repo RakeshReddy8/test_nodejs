@@ -32,7 +32,7 @@ const getPackageInfo = (callback) => {
 // API endpoint to fetch data from RDS
 app.get('/', (req, res) => {
   // Display the Hello message
-  let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 50<br><br>';
+  let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 18th<br><br>';
 
   // Display Node.js version
   responseMessage += `<strong>Node.js Version:</strong> ${process.version}<br><br>`;
