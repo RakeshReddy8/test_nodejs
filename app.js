@@ -83,7 +83,7 @@ app.get('/efs-demo', (req, res) => {
   const efsFile = `${efsPath}/demo.txt`;
 
   // Write data to EFS file
-  fs.writeFileSync(efsFile, 'Hello, EFS! This data is written from ECS Fargate.');
+  fs.writeFileSync(efsFile, 'Hi, folks! This data is fetached from EFS mountes to ECS containers.');
 
   // Read data from EFS file
   const dataFromEFS = fs.readFileSync(efsFile, 'utf-8');
