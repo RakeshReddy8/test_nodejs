@@ -69,25 +69,3 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
-
-
-
-
-const fs = require('fs');
-
-// EFS directory path
-const efsPath = '/mnt/efs';
-
-// API endpoint to read and write data to EFS
-app.get('/efs-demo', (req, res) => {
-  const efsFile = `${efsPath}/demo.txt`;
-
-  // Write data to EFS file
-  fs.writeFileSync(efsFile, 'Hi, folks! This data is fetached from EFS mountes to ECS containers.');
-
-  // Read data from EFS file
-  const dataFromEFS = fs.readFileSync(efsFile, 'utf-8');
-
-  res.send(`<strong>Data from EFS:</strong> ${dataFromEFS}`);
-});
-

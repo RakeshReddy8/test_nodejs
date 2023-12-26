@@ -16,8 +16,5 @@ COPY . .
 # Expose the port on which the app will run
 EXPOSE 3000
 
-# Add a volume for EFS mount point
-VOLUME /mnt/efs
-
 # Define the command to run your application
 CMD ["npm", "start"]
