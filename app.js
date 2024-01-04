@@ -31,41 +31,46 @@ const getPackageInfo = (callback) => {
 
 // API endpoint to fetch data from RDS
 app.get('/', (req, res) => {
-  // Display the Hello message
-  let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 18th and RDS on<br><br>';
+  try {
+    // Display the Hello message
+    let responseMessage = 'Hello, Jenkins Pipeline! ESNE Project with Jenkins WebHook and Rolling Update 18th and RDS on<br><br>';
 
-  // Display Node.js version
-  responseMessage += `<strong>Node.js Version:</strong> ${process.version}<br><br>`;
+    // Display Node.js version
+    responseMessage += `<strong>Node.js Version:</strong> ${process.version}<br><br>`;
 
-  // Fetch package information
-  getPackageInfo((error, packageInfo) => {
-    if (error) {
-      responseMessage += `<strong>Package Information:</strong> ${error}<br><br>`;
-    } else {
-      responseMessage += `<strong>Package Information:</strong><br>${packageInfo}<br><br>`;
-    }
-
-    // Fetch data from RDS
-    pool.query('SELECT * FROM users', (error, results, fields) => {
+    // Fetch package information
+    getPackageInfo((error, packageInfo) => {
       if (error) {
-        console.error('Error fetching data from RDS:', error);
-        res.status(500).send('Internal Server Error');
-        return;
-      }
-
-      // Display fetched data
-      if (results && results.length > 0) {
-        responseMessage += '<strong>User Data from RDS:</strong><br>';
-        results.forEach((user) => {
-          responseMessage += `Username: ${user.username}, Email: ${user.email}<br>`;
-        });
+        responseMessage += `<strong>Package Information:</strong> ${error}<br><br>`;
       } else {
-        responseMessage += 'No user data found in RDS.';
+        responseMessage += `<strong>Package Information:</strong><br>${packageInfo}<br><br>`;
       }
 
-      res.send(responseMessage);
+      // Fetch data from RDS
+      pool.query('SELECT * FROM users', (error, results, fields) => {
+        if (error) {
+          console.error('Error fetching data from RDS:', error);
+          res.status(500).send('Internal Server Error: Unable to fetch data from RDS');
+          return;
+        }
+
+        // Display fetched data
+        if (results && results.length > 0) {
+          responseMessage += '<strong>User Data from RDS:</strong><br>';
+          results.forEach((user) => {
+            responseMessage += `Username: ${user.username}, Email: ${user.email}<br>`;
+          });
+        } else {
+          responseMessage += 'No user data found in RDS.';
+        }
+
+        res.send(responseMessage);
+      });
     });
-  });
+  } catch (error) {
+    console.error('Unexpected error:', error);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 app.listen(port, () => console.log(`App listening at http://localhost:${port}`));
